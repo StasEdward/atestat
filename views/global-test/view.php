@@ -270,20 +270,20 @@ $this->params['breadcrumbs'][] = $model->SERIALNUMBER;
           'buttons' => [
             'view' => function ($url,$model) {
               if($model->GRAPH_ID <> '0')
-                /*  return  \yii\bootstrap\Modal::widget([
-                        'id' => 'showModalButton',
+                  return  \yii\bootstrap\Modal::widget([
+                        'id' => 'showModalButton'.$model->GRAPH_ID,
                         'toggleButton' => [
                             'label' => null,
                             'class' => 'glyphicon glyphicon-equalizer',
                             'tag' => 'a',
                             'data-toggle' => 'modal',
                         //    'data-target' => '#activity-modal',
-                            'data-target' => '#showModalButton',
+                            'data-target' => '#showModalButton'.$model->GRAPH_ID,
                             'href' => Url::toRoute(['/traces-list/view?id='.$model->GRAPH_ID]),
                         ],
                         'clientOptions' => false,
-                    ]);*/
-                      return Html::a('<span class="showModalButton glyphicon glyphicon-equalizer"></span>', Url::base().'/traces-list/view?id='.$model->GRAPH_ID);
+                    ]);
+                    //  return Html::a('<span class="showModalButton glyphicon glyphicon-equalizer"></span>', Url::base().'/traces-list/view?id='.$model->GRAPH_ID);
                     else
                       return "";
 

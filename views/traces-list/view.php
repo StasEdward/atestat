@@ -21,13 +21,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Back', 'url' => Yii::$app->request
     <div class="box box-success box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Trace #<?= Html::encode($this->title) ?></h3>
+                  <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
 
                   <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
-                <div id="modal-body">
+                <div id="modal-body<?= $model->id ?>">
 
-                  <div id="container">
+                  <div id="container<?= $model->id ?>">
                   </div>
                   <?= Highcharts::widget([
                       'scripts' => [
@@ -41,12 +44,12 @@ $this->params['breadcrumbs'][] = ['label' => 'Back', 'url' => Yii::$app->request
                           'credits' => 'false',
                           'gridLineWidth' => 0,
                           'chart' => [
-                            'renderTo' => 'container',
+                            'renderTo' => 'container'.$model->id,
                         //    'height' = 400,
                             'borderWidth' => '0',
                             'backgroundColor' => '#FFFFFF',
                             'plotBackgroundColor' => '#FFFFFF',
-                            'marginLeft' => 50
+                            'marginLeft' => 70
                           ],
                           'title' => [
                               'text' => null,
@@ -75,6 +78,5 @@ $this->params['breadcrumbs'][] = ['label' => 'Back', 'url' => Yii::$app->request
                 <!-- /.box-body -->
               </div>
 
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 </div>

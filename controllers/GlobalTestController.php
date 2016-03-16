@@ -40,7 +40,6 @@ class GlobalTestController extends Controller
     public function actionIndex()
     {
         $searchModel = new GlobalTestSearch();
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

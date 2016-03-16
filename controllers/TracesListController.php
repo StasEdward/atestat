@@ -59,7 +59,7 @@ class TracesListController extends Controller
 
 //        $this->layout = false;
 //        return $this->renderAjax('view', [
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
             'arr_freq' => $arr_freq,
             'arr_power' => $arr_power,
