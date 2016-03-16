@@ -3,6 +3,8 @@ Ceragon ATE stat web site project
 
 ATE Stat project base on Yii 2 Basic Project Template is a skeleton
 
+[![Latest Stable Version](https://poser.pugx.org/atecloud/atestat/version)](https://packagist.org/packages/atecloud/atestat) [![Latest Unstable Version](https://poser.pugx.org/atecloud/atestat/v/unstable)](//packagist.org/packages/atecloud/atestat) [![Total Downloads](https://poser.pugx.org/atecloud/atestat/downloads)](https://packagist.org/packages/atecloud/atestat)
+
 DIRECTORY STRUCTURE
 -------------------
 
