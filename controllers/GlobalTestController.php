@@ -39,6 +39,11 @@ class GlobalTestController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest){
+            return $this->render('/site/about', [
+            ]);
+        }
+
         $searchModel = new GlobalTestSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

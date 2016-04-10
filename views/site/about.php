@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   To view this site you must be registered and logged in:   <a href="/user/security/login"><i class="fa fa-unlock-alt"></i>  Sign In</a>
                 </div>
 
-        <center><img class="img-responsive" src="images/about.png" alt="Chania"></center>
+        <center><img class="img-responsive" src="/images/about.png" alt="Chania"></center>
       <?php //echo Html::img('@web/images/about.png', ['alt'=>Yii::$app->name]) ?>
 
 

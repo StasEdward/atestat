@@ -5,9 +5,11 @@ use kartik\detail\DetailView;
 use kartik\grid\GridView;
 use kartik\dynagrid\Module;
 use \yii\helpers\ArrayHelper;
-use app\models\TestResultsController;
+use app\controllers\AtereportController;
 use yii\helpers\Url;
 use yii\web\UrlManager;
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\GlobalTest */
 
@@ -136,9 +138,9 @@ $this->params['breadcrumbs'][] = $model->SERIALNUMBER;
         ],
 
 
-    ]); ?>
+    ]);
 
-    <?=  GridView::widget([
+     GridView::widget([
         'dataProvider'=> $dataProvider,
         'bootstrap' => true,
         'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
@@ -225,5 +227,6 @@ $this->params['breadcrumbs'][] = $model->SERIALNUMBER;
                     ],
                 ],
             ],
-        ]); ?>
+        ]); 
+         ?>
     </div>

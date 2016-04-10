@@ -66,11 +66,11 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        'db_flex1' => require(__DIR__ . '/db_flex1.php'),
-        'db_flex2' => require(__DIR__ . '/db_flex2.php'),
-        'db_ionics1' => require(__DIR__ . '/db_ionics1.php'),
-        'db_ionics2' => require(__DIR__ . '/db_ionics2.php'),
-        'db_vcl1' => require(__DIR__ . '/db_vcl1.php'),
+        //'db_flex1' => require(__DIR__ . '/db_flex1.php'),
+        //'db_flex2' => require(__DIR__ . '/db_flex2.php'),
+        //'db_ionics1' => require(__DIR__ . '/db_ionics1.php'),
+        //'db_ionics2' => require(__DIR__ . '/db_ionics2.php'),
+        //'db_vcl1' => require(__DIR__ . '/db_vcl1.php'),
         //'db_vcl1' => require(__DIR__ . '/firebird.php'),
 
       //  *

@@ -13,7 +13,7 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.5",
-        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-bootstrap": "^2.0",
         "yiisoft/yii2-swiftmailer": "*",
         "edgardmessias/yii2-firebird": "^0.6.0",
         "kartik-v/yii2-dynagrid": "@dev",
@@ -23,12 +23,16 @@
         "kartik-v/yii2-editable": "@dev",
         "kartik-v/yii2-widgets": "@dev",
         "kartik-v/yii2-grid": "@dev",
-        "miloschuman/yii2-highcharts-widget": "dev-master"
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "kartik-v/yii2-widget-depdrop": "@dev",
+        "kartik-v/dependent-dropdown": "@dev",
+        "kartik-v/yii2-date-range": "*",
+        "yiisoft/yii2-debug": "^2.0",
+        "yiisoft/yii2-smarty": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-gii": "^2.0",
         "yiisoft/yii2-faker": "*"
     },
     "config": {

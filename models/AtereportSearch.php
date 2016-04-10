@@ -5,12 +5,13 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\GlobalTest;
+use app\models\Atereport;
+use yii\helpers\ArrayHelper;
 
 /**
- * GlobalTestSearch represents the model behind the search form about `app\models\GlobalTest`.
+ * AtereportSearch represents the model behind the search form about `app\models\Atereport`.
  */
-class GlobalTestSearch extends GlobalTest
+class AtereportSearch extends Atereport
 {
     /**
      * @inheritdoc
@@ -19,7 +20,7 @@ class GlobalTestSearch extends GlobalTest
     {
         return [
             [['id', 'UUTPLACE'], 'integer'],
-            [['FACILITY', 'STATIONID', 'UUTNAME', 'PARTNUMBER', 'SERIALNUMBER', 'TECHNAME', 'TESTDATE', 'TIMESTART', 'TIMESTOP', 'TESTMODE', 'GLOBALRESULT', 'VERSIONS'], 'safe'],
+            [['STATIONID', 'UUTNAME', 'PARTNUMBER', 'SERIALNUMBER', 'TECHNAME', 'TESTDATE', 'TIMESTART', 'TIMESTOP', 'TESTMODE', 'GLOBALRESULT', 'VERSIONS', 'FACILITY'], 'safe'],
         ];
     }
 
@@ -32,6 +33,30 @@ class GlobalTestSearch extends GlobalTest
         return Model::scenarios();
     }
 
+
+    public static function getPartNumberList($uut_name)
+    {
+
+        $return = [];
+        $out = [];
+
+        return Atereport::find()->select('DISTINCT `PARTNUMBER` as id, `PARTNUMBER` as name')->where(['UUTNAME' => $uut_name])->asArray()->all();
+        
+        //print_r($models);
+
+        //$return = ArrayHelper::map($models, 'id', 'name');
+       // print_r($return);
+
+
+     /*   
+        foreach ($return as $key => $value) {
+            $out['id'] = $value[$key];
+            $out['name'] = $value[$key];
+        }
+        return $out;
+*/
+    }
+
     /**
      * Creates data provider instance with search query applied
      *
@@ -41,17 +66,12 @@ class GlobalTestSearch extends GlobalTest
      */
     public function search($params)
     {
-
-        if ((Yii::$app->user->identity->username <> 'admin') AND (Yii::$app->user->identity->username <> 'Ceragon'))
-          $query = GlobalTest::find()->andWhere(['FACILITY' => Yii::$app->user->identity->username]);
-        else
-          $query = GlobalTest::find();
+        $query = Atereport::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['TESTDATE'=>SORT_DESC, 'id'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -65,7 +85,6 @@ class GlobalTestSearch extends GlobalTest
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'FACILITY' => $this->FACILITY,
             'TESTDATE' => $this->TESTDATE,
             'TIMESTART' => $this->TIMESTART,
             'TIMESTOP' => $this->TIMESTOP,
@@ -73,14 +92,14 @@ class GlobalTestSearch extends GlobalTest
         ]);
 
         $query->andFilterWhere(['like', 'STATIONID', $this->STATIONID])
-        //    ->andFilterWhere(['like', 'FACILITY', $this->FACILITY])
-            ->andFilterWhere(['like', 'UUTNAME', $this->UUTNAME])
+            ->andFilterWhere(['=', 'UUTNAME', $this->UUTNAME])
             ->andFilterWhere(['like', 'PARTNUMBER', $this->PARTNUMBER])
             ->andFilterWhere(['like', 'SERIALNUMBER', $this->SERIALNUMBER])
             ->andFilterWhere(['like', 'TECHNAME', $this->TECHNAME])
             ->andFilterWhere(['like', 'TESTMODE', $this->TESTMODE])
             ->andFilterWhere(['like', 'GLOBALRESULT', $this->GLOBALRESULT])
-            ->andFilterWhere(['like', 'VERSIONS', $this->VERSIONS]);
+            ->andFilterWhere(['like', 'VERSIONS', $this->VERSIONS])
+            ->andFilterWhere(['like', 'FACILITY', $this->FACILITY]);
 
         return $dataProvider;
     }

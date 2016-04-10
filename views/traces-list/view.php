@@ -49,19 +49,41 @@ $this->params['breadcrumbs'][] = ['label' => 'Back', 'url' => Yii::$app->request
                             'borderWidth' => '0',
                             'backgroundColor' => '#FFFFFF',
                             'plotBackgroundColor' => '#FFFFFF',
-                            'marginLeft' => 70
+                            'marginLeft' => 70,
+                            'zoomType' => 'x',
+                            'panning' => true,
+                            'panKey' => 'shift',
                           ],
                           'title' => [
                               'text' => null,
                           ],
                           'xAxis' => [
                             'categories' => $arr_freq,
+                            'title' => [
+                              'text' => $model->X_AXIS
+                            ],
                           ],
+                          'yAxis' => [
+                            'title' => [
+                              'text' => $model->Y_AXIS
 
+                            ],
+                          ],
+                          'legend' => [
+                            'enabled' => false,
+                          ],
+                          'plotOptions' => [
+                            'series' => [
+                              'marker' => [
+                                'enabled' => false
+                                ]
+                              ]
+                          ],
                           'series' => [
                               [
-                              //    'type' => 'line',
-                                  'name' => 'Pout(dBm)',
+                                  'type' => 'spline',
+                                  //'name' => false,
+                                  'name' => $model->Y_AXIS,
                                   'data' => $arr_power,
                                   'color' => new JsExpression('Highcharts.getOptions().colors[1]'),
 

@@ -357,7 +357,11 @@ $this->title = 'ATE Dashboard';
                     <!-- /.box-body -->
                     <!-- /.box-header -->
                     <div class="box-header with-border">
-                    <?php Pjax::begin(); ?>    <?=
+                    <?php Pjax::begin();
+
+
+                //    echo $date;
+                    ?>    <?=
                     GridView::widget([
                             'dataProvider' => $UUTFailprovider,
                             'bootstrap' => 'true',
@@ -382,7 +386,7 @@ $this->title = 'ATE Dashboard';
                                 ],
                                 [
                                     'label' => 'Fails',
-                                    'attribute'=>'y',
+                                    'attribute'=>'fails',
                                 ],
                                 [
                                     'class' => 'yii\grid\ActionColumn',
@@ -400,8 +404,8 @@ $this->title = 'ATE Dashboard';
                                     else {
                                         $facility_name = '';
                                     }
-
-                                        return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', Url::base().'/global-test/index?GlobalTestSearch[FACILITY]='.$facility_name.'&GlobalTestSearch[UUTNAME]='.$model['name'].'&GlobalTestSearch[GLOBALRESULT]=Fail');
+                                        $date = date("Y-m-d", time());
+                                        return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', Url::base().'/global-test/index?GlobalTestSearch[FACILITY]='.$facility_name.'&GlobalTestSearch[UUTNAME]='.$model['name'].'&GlobalTestSearch[GLOBALRESULT]=Fail&GlobalTestSearch[TESTDATE]='.$date.'');
                                         },
                                     ],
 
@@ -469,7 +473,7 @@ $this->title = 'ATE Dashboard';
                                     [
                                         'name' => $db_result_arr['DB_Name'],
                                         'y' => (int)$db_result_arr['table_rows'],
-                                        'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // results
+                                        'color' => new JsExpression('Highcharts.getOptions().colors[9]'), // results
                                     ],
                                     [
                                         'name' => $db_trace_arr['DB_Name'],

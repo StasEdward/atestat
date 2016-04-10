@@ -1,25 +1,90 @@
 <?php
 
 use yii\helpers\Html;
-//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\ArrayHelper;
+//use kartik\widgets\Select2;
+use yii\bootstrap\ActiveForm;
+//use kartik\widgets\ActiveForm;
 use yii\helpers\Url;
-use app\models\GlobalTest;
+//use yii\helpers\Json;
+use app\models\AtereportSearch;
+use kartik\depdrop\DepDrop;
+use kartik\daterange\DateRangePicker;
+//use yii\web\JsExpression;
 
-
-use kartik\grid\GridView;
-use kartik\dynagrid\Module;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\GlobalTestSearch */
+/* @var $searchModel app\models\AtereportSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Global Tests';
+$this->title = 'Atereports';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="global-test-index">
-    <?php
-    $result_value= ['0' => 'Pass', '1' => 'Fail'];
+<div class="atereport-index">
+
+<?php echo $this->render('_search', ['model' => $searchModel, 'uutListData' => $uutListData,]); ?>
+
+<?php
+/*
+// Child # 2
+echo $form->field($model, 'prod')->widget(DepDrop::classname(), [
+    'pluginOptions'=>[
+        'depends'=>['cat-id', 'subcat-id'],
+        'placeholder'=>'Select...',
+        'url'=>Url::to(['/site/prod'])
+    ]
+]);
+*/
+?>
+
+
+<?php /*
+
+!!!!!!!!!!!!! WORKING CODE !!!!!!!!!!! 
+
+<div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-3">
+
+
+<?php $form = ActiveForm::begin(); ?>
+
+<?= $form->field($model, 'UUTNAME')->dropDownList(
+                ArrayHelper::map(AtereportSearch::find()->select('UUTNAME')->asArray()->all(), 'UUTNAME', 'UUTNAME'),
+                [
+                    'prompt' => 'Select UUT name',
+                    'onchange' => '
+                        $.post("atereport/partnumbers?uutname='.'"+$(this).val(), function( data ) {
+                            $( "select#atereport-partnumber" ).html( data);
+                        });'
+                ]);
+?>
+
+    </div>
+            <div class="col-sm-3">
+<?= $form->field($model, 'PARTNUMBER')->dropDownList(
+                ArrayHelper::map(AtereportSearch::find()->select('PARTNUMBER')->asArray()->all(), 'PARTNUMBER', 'PARTNUMBER'),
+//                ArrayHelper::map(AtereportSearch::find()->select('PARTNUMBER `PARTNUMBER`')->all(), 'PARTNUMBER', 'PARTNUMBER'),
+                [
+                    'prompt' => 'Select part number',
+                 //   'multiple' => 'true'
+
+                ]);
+?>
+
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+          </div>
+          </div>
+
+!!!!!!!!!!!!! WORKING CODE !!!!!!!!!!!
+
+*/
+
+$result_value= ['0' => 'Pass', '1' => 'Fail'];
     $gridColumns = [
         [
             'class' => 'yii\grid\SerialColumn'
@@ -195,9 +260,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ];
 
-    ?>
+ ?>
 
-    <?php Pjax::begin(); ?>    <?= GridView::widget([
+
+
+
+
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider'=>$dataProvider,
         'filterModel'=>$searchModel,
         'columns'=>$gridColumns,
@@ -239,4 +308,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     ]);
     ?>
-    <?php  Pjax::end(); ?></div>
+    <?php  Pjax::end(); ?>
+
+
+
+</div>

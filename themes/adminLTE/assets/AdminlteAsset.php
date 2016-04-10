@@ -13,10 +13,10 @@ class AdminlteAsset extends AssetBundle
     //    'css/font-awesome.min.css',
     //    'css/ionicons.min.css',
         'css/AdminLTE.min.css',
-        'css/skins/_all-skins.min.css'
+        'css/skins/_all-skins.min.css',
     ];
     public $js = [
-        'js/app.min.js'
+        'js/app.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

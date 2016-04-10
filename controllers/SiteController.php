@@ -72,9 +72,7 @@ class SiteController extends Controller
 
         if (Yii::$app->user->isGuest){
             return $this->render('about', [
-                //      'searchModel' => $searchModel,
             ]);
-
         }
 
         $fail_arr = array();
@@ -90,9 +88,9 @@ class SiteController extends Controller
         $db_result_arr = array();
         $db_trace_arr = array();
         $db_statist_arr = DbStat::getDbStatistics();
-        $db_result_arr = $db_statist_arr[2];
-        $db_global_arr = $db_statist_arr[3];
-        $db_trace_arr = $db_statist_arr[4];
+        $db_result_arr = $db_statist_arr[3];
+        $db_global_arr = $db_statist_arr[4];
+        $db_trace_arr = $db_statist_arr[5];
 
         $uutFail_result = array();
         $uut_result = array();
@@ -104,12 +102,14 @@ class SiteController extends Controller
         $UUTFailprovider = new ArrayDataProvider([
             'allModels' => $uutFail_result,
             'sort' => [
-                'attributes' => ['name', 'y',],
+                'attributes' => ['name', 'fails',],
             ],
             'pagination' => [
                 'pageSize' => 10,
             ],
         ]);
+
+
 
         $color_array = array();
         $elements_in_arr = count($uutFail_result);
@@ -124,10 +124,10 @@ class SiteController extends Controller
         //    echo("</br>");
         for ($i=0; $i < $elements_in_arr; $i++) {
             $TotaluutFail_result[$i] =  $uutFail_result[$i] + $color_array[$i];
-            $TotaluutFail_result[$i]['y'] =  (int)$TotaluutFail_result[$i]['y'];
+            $TotaluutFail_result[$i]['y'] =  (int)$TotaluutFail_result[$i]['fails'];
         }
         //  print_r($TotaluutFail_result);
-
+//print_r($TotaluutFail_result);
 
         $pass_percent = 0;
         $fail_percent = 0;
@@ -144,7 +144,7 @@ class SiteController extends Controller
             //$facility_name = Yii::$app->user->identity->username;
         }
         else{
-            $facility_arr = ['Ceragon', 'Flex1', 'Flex2', 'Ionics1', 'Ionics2', 'VCL1' ];
+            $facility_arr = ['Ceragon', 'Flex1', 'Flex2', 'Ionics1', 'Ionics2', 'VCL1', 'JBL1' ];
             //$facility_name = '';
         }
 
@@ -157,7 +157,7 @@ class SiteController extends Controller
         $coloPFr_array = array();
 
         for ($i=0; $i < count($facility_arr) ; $i++) {
-            $js_text = "Highcharts.getOptions().colors[".$i."]";
+            $js_text = "Highcharts.getOptions().colors[".($i-1)."]";
             $coloPFr_array[$i]['color'] = new JsExpression($js_text);
         }
 
