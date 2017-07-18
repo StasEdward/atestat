@@ -5,10 +5,19 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\themes\adminLTE\assets\AdminlteAsset;
 use yii\helpers\Url;
+
+use dektrium\user\models\User;
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 AdminlteAsset::register($this);
 AppAsset::register($this);
+
+
+//print_r(Yii::$app->user->identity);
+
+//echo Yii::$app->user->identity->email;
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -55,7 +64,7 @@ AppAsset::register($this);
 									array_push($navItems,['label' => '<i class="fa fa-unlock-alt"></i>  Sign In', 'url' => ['/user/security/login']]);
   							} else {
     							array_push($navItems,['label' => '<i class="fa  fa-lock"></i>  Logout (' . Yii::$app->user->identity->username . ') ',
-        					'url' => ['/user/security/logout'],
+        					'url' => ['/user/security/logout'],                                       
         					'linkOptions' => ['data-method' => 'post']]
     						);
   							}

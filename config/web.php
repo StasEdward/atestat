@@ -66,7 +66,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        //'db_flex1' => require(__DIR__ . '/db_flex1.php'),
+        'db_atemain' => require(__DIR__ . '/db_atemain.php'),
         //'db_flex2' => require(__DIR__ . '/db_flex2.php'),
         //'db_ionics1' => require(__DIR__ . '/db_ionics1.php'),
         //'db_ionics2' => require(__DIR__ . '/db_ionics2.php'),

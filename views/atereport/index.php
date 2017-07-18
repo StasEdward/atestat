@@ -1,5 +1,4 @@
-<?php
-
+﻿<?php
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -23,6 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="atereport-index">
 
+<div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                Attention! This module is in development, and data may not be correct.
+              </div>
+
+
+
 <?php echo $this->render('_search', ['model' => $searchModel, 'uutListData' => $uutListData,]); ?>
 
 <?php
@@ -41,7 +48,7 @@ echo $form->field($model, 'prod')->widget(DepDrop::classname(), [
 
 <?php /*
 
-!!!!!!!!!!!!! WORKING CODE !!!!!!!!!!! 
+!!!!!!!!!!!!! WORKING CODE !!!!!!!!!!!
 
 <div class="container-fluid">
           <div class="row">

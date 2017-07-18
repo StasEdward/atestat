@@ -2,7 +2,7 @@
 
 return [
     'class' => 'edgardmessias\db\firebird\Connection',
-    'dsn' => 'firebird:dbname=phosphorus3:d:\home\administrator\local_dbs\ATEGLOBAL;charset=ISO8859_1',
+    'dsn' => 'firebird:dbname=10.10.14.61:d:\home\administrator\firebird_dbs\atemaindb.fdb;charset=ISO8859_1',
     'username' => 'SYSDBA',
     'password' => 'masterkey',
 ];

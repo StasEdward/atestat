@@ -16,6 +16,8 @@ use kartik\dynagrid\Module;
 
 $this->title = 'Global Tests';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="global-test-index">
     <?php

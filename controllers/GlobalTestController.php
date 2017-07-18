@@ -59,11 +59,12 @@ class GlobalTestController extends Controller
      */
     public function actionFailed()
     {
+        $date = date("Y-m-d", time());
         $searchModel = new GlobalTestSearch();
         if ((Yii::$app->user->identity->username <> 'admin') AND (Yii::$app->user->identity->username <> 'Ceragon'))
           $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Fail'])->andWhere(['FACILITY' => Yii::$app->user->identity->username])->orderBy(['TESTDATE' => SORT_DESC]);
         else
-          $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Fail'])->orderBy(['TESTDATE' => SORT_DESC]);
+          $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Fail'])->andWhere(['TESTDATE' => $date])->orderBy(['TESTDATE' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
         'query' => $query,
         'pagination' => [
@@ -82,11 +83,12 @@ class GlobalTestController extends Controller
      */
     public function actionPassed()
     {
+        $date = date("Y-m-d", time());
         $searchModel = new GlobalTestSearch();
         if ((Yii::$app->user->identity->username <> 'admin') AND (Yii::$app->user->identity->username <> 'Ceragon'))
           $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Pass'])->andWhere(['FACILITY' => Yii::$app->user->identity->username])->orderBy(['TESTDATE' => SORT_DESC]);
         else
-        $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Pass'])->orderBy(['TESTDATE' => SORT_DESC]);
+        $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Pass'])->andWhere(['TESTDATE' => $date])->orderBy(['TESTDATE' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
         'query' => $query,
         'pagination' => [
@@ -105,11 +107,12 @@ class GlobalTestController extends Controller
      */
     public function actionErrors()
     {
+        $date = date("Y-m-d", time());
         $searchModel = new GlobalTestSearch();
         if ((Yii::$app->user->identity->username <> 'admin') AND (Yii::$app->user->identity->username <> 'Ceragon'))
           $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Error'])->andWhere(['FACILITY' => Yii::$app->user->identity->username])->orderBy(['TESTDATE' => SORT_DESC]);
         else
-          $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Error'])->orderBy(['TESTDATE' => SORT_DESC]);
+          $query = GlobalTestSearch::find()->where(['GLOBALRESULT' => 'Error'])->andWhere(['TESTDATE' => $date])->orderBy(['TESTDATE' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
         'query' => $query,
         'pagination' => [

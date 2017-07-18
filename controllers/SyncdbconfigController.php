@@ -3,18 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\TracesList;
-use app\models\MaskList;
-
-use app\models\TracesListSearch;
+use app\models\syncdbconfig;
+use app\models\syncdbconfigSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TracesListController implements the CRUD actions for TracesList model.
+ * SyncdbconfigController implements the CRUD actions for syncdbconfig model.
  */
-class TracesListController extends Controller
+class SyncdbconfigController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,12 +30,12 @@ class TracesListController extends Controller
     }
 
     /**
-     * Lists all TracesList models.
+     * Lists all syncdbconfig models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TracesListSearch();
+        $searchModel = new syncdbconfigSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,39 +45,26 @@ class TracesListController extends Controller
     }
 
     /**
-     * Displays a single TracesList model.
+     * Displays a single syncdbconfig model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-      $trace_model = $this->findModel($id);
-      $tr_arr = $trace_model->toArray();
-
-      $arr_freq = array_merge(unpack("d*", $tr_arr['TRACE_FREQ_DATA']));
-      $arr_power = array_merge(unpack("d*", $tr_arr['TRACE_POWER_DATA']));
-
-//        $this->layout = false;
-//        return $this->renderAjax('view', [
-        return $this->renderAjax('view', [
+        return $this->render('view', [
             'model' => $this->findModel($id),
-            'arr_freq' => $arr_freq,
-            'arr_power' => $arr_power,
-          //  'freq_array' => $freq_array,
         ]);
     }
 
     /**
-     * Creates a new TracesList model.
+     * Creates a new syncdbconfig model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $mask_model = new MaskList();
+        $model = new syncdbconfig();
 
-
-        $model = new TracesList();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -90,7 +75,7 @@ class TracesListController extends Controller
     }
 
     /**
-     * Updates an existing TracesList model.
+     * Updates an existing syncdbconfig model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,7 +94,7 @@ class TracesListController extends Controller
     }
 
     /**
-     * Deletes an existing TracesList model.
+     * Deletes an existing syncdbconfig model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -122,15 +107,15 @@ class TracesListController extends Controller
     }
 
     /**
-     * Finds the TracesList model based on its primary key value.
+     * Finds the syncdbconfig model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TracesList the loaded model
+     * @return syncdbconfig the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TracesList::findOne($id)) !== null) {
+        if (($model = syncdbconfig::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
